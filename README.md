@@ -2,10 +2,10 @@
 ## Overview
 What is GoForGreen?  
 GoForGreen (GFG) is a python script that checks if you have commited today on github so that your commit history timeline looks as green as possible. Because thats all that matters, right?  
-This script is meant to be automatically run on startup as a reminder, but that is entirely optional.
-## Installation
-These instructions are designed for linux. If you use windows, just clone the github repo as usual and you can make it auto execute yourself.  
+This script is meant to be automatically run on startup as a reminder, but that is entirely optional.  
 
+Please note that the script uses absolute linux file structure paths and the installation guide is also for linux!
+## Installation
 Step 1: Curl main.py and GFGconfig.txt  
 ```
 sudo curl -L -o /usr/local/bin/GoForGreen https://raw.githubusercontent.com/Its-Rolo/GoForGreen/main/main.py
