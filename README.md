@@ -8,8 +8,8 @@ These instructions are designed for linux. If you use windows, just clone the gi
 
 Step 1: Curl main.py and GFGconfig.txt  
 ```
-sudo curl -L -H https://raw.githubusercontent.com/Its-Rolo/GoForGreen/main/main.py -o /usr/local/bin/GoForGreen
-sudo curl -L -H https://raw.githubusercontent.com/Its-Rolo/GoForGreen/main/GFGconfig.txt -o /usr/local/bin/GFGconfig.txt
+sudo curl -L -o /usr/local/bin/GoForGreen.py https://raw.githubusercontent.com/Its-Rolo/GoForGreen/main/main.py
+sudo curl -L -o /usr/local/bin/GFGconfig.txt https://raw.githubusercontent.com/Its-Rolo/GoForGreen/main/GFGconfig.txt
 sudo chmod a+rx /usr/local/bin/GoForGreen.py
 ```
 
