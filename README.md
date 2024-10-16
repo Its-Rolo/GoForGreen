@@ -22,3 +22,18 @@ This step differs heavily based on DE/WM, but in hyprland for example add the fo
 ```
 exec-once = /usr/local/bin/GoForGreen.py
 ```
+
+## Updating
+To update GoForGreen, simply run the following command:
+```
+sudo rm /usr/local/bin/GoForGreen.py
+sudo curl -L -o /usr/local/bin/GoForGreen https://raw.githubusercontent.com/Its-Rolo/GoForGreen/main/main.py
+sudo chmod a+rx /usr/local/bin/GoForGreen
+```
+
+## Uninstallation
+To uninstall GoForGreen, simply run the following command:
+```
+sudo rm /usr/local/bin/GoForGreen.py
+sudo rm /usr/local/bin/GFGconfig.txt
+```
