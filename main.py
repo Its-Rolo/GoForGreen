@@ -4,6 +4,9 @@ import requests
 from datetime import datetime
 from plyer import notification
 import os
+import time
+
+time.sleep(10) # IMPORTANT!!!! Waits for other services to run first otherwise it will break
 
 # Check if the file exists
 if os.path.exists("/usr/local/bin/GFGconfig.txt"):
