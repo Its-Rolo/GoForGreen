@@ -5,47 +5,47 @@ from datetime import datetime
 from plyer import notification
 import os
 import time
-import pytz
+import pytz  # Required for timezone handling
 
-time.sleep(10)  # IMPORTANT!!!! Waits for other services to run first otherwise it will break
+time.sleep(10)  # Wait for other services to run first.
 
-if os.path.exists("/usr/local/bin/GFGconfig.txt"):
-    with open("/usr/local/bin/GFGconfig.txt", "r") as f:
-        username = f.readline().strip()
+# Check if the configuration file exists
+config_path = "/usr/local/bin/GFGconfig.txt"
+if os.path.exists(config_path):
+    with open(config_path, "r") as f:
+        username = f.readline().strip()  # Read and strip whitespace
         token = f.readline().strip()
 else:
     print("The file GFGconfig.txt does not exist.")
     exit()
 
-url = f"https://api.github.com/users/{username}/events"
+# Define your repository name here
+repository_name = "Its-Rolo/GoForGreen"  # Update as needed
+
+# Get today's date in EST
+est_tz = pytz.timezone('America/New_York')
+today_start = datetime.now(est_tz).date()
+today_start_iso = f"{today_start}T00:00:00Z"
+
+# Construct the API URL to fetch today's commits
+url = f"https://api.github.com/repos/{repository_name}/commits?since={today_start_iso}"
 
 headers = {
-    "Authorization": f"token {token}" 
+    "Authorization": f"token {token}"
 }
 
+# Make the request to GitHub API
 response = requests.get(url, headers=headers)
 
 if response.status_code == 200:
-    events = response.json()
-    committed_today = False
-
-    # Get today's local date
-    today_local = datetime.now().date()
-
-    for event in events:
-        if event["type"] == "PushEvent":
-            # Convert GitHub UTC time to local time
-            event_date = datetime.strptime(event["created_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=pytz.utc).astimezone().date()
-
-            # Check if the event happened today (local calendar date)
-            if event_date == today_local:
-                committed_today = True
-                break
+    commits = response.json()
+    committed_today = len(commits) > 0
 
     if committed_today:
+        commit_messages = [commit['commit']['message'] for commit in commits]
         notification.notify(
             title="GoForGreen Commit Check",
-            message=f"You have committed today in {event['repo']['name']}!",
+            message=f"You have committed today in {repository_name}!",
             app_name="GitHub Notifier",
             timeout=5
         )
@@ -54,7 +54,7 @@ if response.status_code == 200:
             title="GoForGreen Commit Check",
             message="You have not committed today :(",
             app_name="GitHub Notifier",
-            timeout=5  # Duration the notification stays on screen
+            timeout=5
         )
 else:
-    print(f"Failed to fetch events: {response.status_code}")
+    print(f"Failed to fetch commits: {response.status_code}, {response.text}")
