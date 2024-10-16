@@ -34,6 +34,6 @@ sudo chmod a+rx /usr/local/bin/GoForGreen
 ## Uninstallation
 To uninstall GoForGreen, simply run the following command:
 ```
-sudo rm /usr/local/bin/GoForGreen.py
+sudo rm /usr/local/bin/GoForGreen
 sudo rm /usr/local/bin/GFGconfig.txt
 ```
