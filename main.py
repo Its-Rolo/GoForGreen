@@ -6,8 +6,8 @@ from plyer import notification
 import os
 
 # Check if the file exists
-if os.path.exists("./GFGconfig.txt"):
-    with open("./GFGconfig.txt", "r") as f:
+if os.path.exists("/usr/local/bin/GFGconfig.txt"):
+    with open("/usr/local/bin/GFGconfig.txt", "r") as f:
         username = f.readline().strip()  # Read and strip whitespace
         token = f.readline().strip()
 else:
