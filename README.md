@@ -20,7 +20,7 @@ and replace *token* with one of your github personal access token(s). It does no
 Step 3: Optionally make it execute on startup  
 This step differs heavily based on DE/WM, but in hyprland for example add the following line to hyprland.conf:
 ```
-exec-once = /usr/local/bin/GoForGreen.py
+exec-once = /usr/local/bin/GoForGreen
 ```
 
 ## Updating
